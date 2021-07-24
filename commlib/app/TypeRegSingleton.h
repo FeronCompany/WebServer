@@ -79,6 +79,32 @@ private:
 	std::string m_defaultTypeName;
 };
 
+
+template <typename BaseType, typename T, bool isDefault>
+class TypeRegister
+{
+private:
+    struct Meta
+    {
+        Meta() {TypeRegister::AddFunction();}
+        void DoNothing() {}
+    };
+    static Meta meta;
+public:
+    static void AddFunction()
+    {
+        //NORMAL_LOG("Adding " #__cb_func);
+        CWSLib::CommSingleton<TypeFactory<BaseType>>::instance()->join(T::name, getInstance, isDefault);
+        meta.DoNothing();
+    }
+    static BaseType* getInstance()
+    {
+        return new T;
+    }
+};
+template <typename BaseType, typename T, bool isDefault>
+typename TypeRegister<BaseType, T, isDefault>::Meta TypeRegister<BaseType, T, isDefault>::meta;
+
 #define REG_TYPE(BaseType, TypeName, __cb_func, is_default) \
 class TypeRegCaller ## TypeName {\
 private:\

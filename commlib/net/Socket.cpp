@@ -1,12 +1,9 @@
-
-
 #include <unistd.h>
 #include <fcntl.h>
 #include <netinet/in.h>
 #include <netdb.h>
 #include <arpa/inet.h>
 #include <cstring>
-
 #include "Socket.h"
 #include "commlib/app/MacroAssemble.h"
 

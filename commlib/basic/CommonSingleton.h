@@ -1,5 +1,3 @@
-
-
 #ifndef __COMMON_SINGLETON_H__
 #define __COMMON_SINGLETON_H__
 
@@ -30,7 +28,8 @@ namespace CWSLib
 		CommSingleton() {}
 		CommSingleton(CommSingleton& comm) {}
 	};
-	template<typename T> typename CommSingleton<T>::SingleQuaran CommSingleton<T>::m_quaran;
+    template<typename T>
+    typename CommSingleton<T>::SingleQuaran CommSingleton<T>::m_quaran;
 }
 
 #endif // !__COMMON_SINGLETON_H__

@@ -1,7 +1,4 @@
-
-
 #include "ThreadPool.h"
-
 #include <iostream>
 
 CWSLib::ThreadPool::~ThreadPool()

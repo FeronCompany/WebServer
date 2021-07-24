@@ -14,6 +14,8 @@
 class TestTask : public CWSLib::BaseJob
 {
 public:
+    static std::string name;
+public:
     void Init(std::shared_ptr<CWSLib::Socket> sock) override
     {
 
@@ -35,6 +37,6 @@ public:
 private:
 
 };
-
+std::string TestTask::name("TestTask");
 #endif // !__TEST_TASK_H__
 

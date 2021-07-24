@@ -2,7 +2,6 @@
 
 #include "commlib/app/MacroAssemble.h"
 #include "commlib/thread_pool/ThreadPool.h"
-
 #include "CwsServer.h"
 
 namespace CwsFrame
@@ -40,7 +39,7 @@ namespace CwsFrame
     void Server::Run()
     {
         NORMAL_LOG("[%u] services has been registed.", m_serviceMap.size());
-        CWSLib::ThreadPool& thdPool = *CWSLib::CommSingleton<CWSLib::ThreadPool>::instance();
+        CWSLib::ThreadPool& thdPool = *CWSLib::SThreadPool::instance();
         thdPool.init(1, 100, 1);
         dispatcher.init();
         NORMAL_LOG("Finish init server");

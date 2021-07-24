@@ -24,7 +24,6 @@ namespace CwsFrame
 		std::map<std::string, std::shared_ptr<Service>> m_serviceMap;
 		CWSLib::EventDispatcher dispatcher;
 	};
-
 	template<typename TMethod>
 	class MethodRegMeta
 	{

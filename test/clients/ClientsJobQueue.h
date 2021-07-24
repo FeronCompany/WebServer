@@ -35,6 +35,7 @@ namespace CWSTest
 		std::vector<std::shared_ptr<ClientJobBase>> m_queue;
 		ExecResult m_result;
 	};
+    using SClientQueue = CWSLib::CommSingleton<ClientQueue>;
 
 	template<typename ClientImpl>
 	class RegClientMata
@@ -42,7 +43,7 @@ namespace CWSTest
 	public:
 		RegClientMata()
 		{
-			CWSLib::CommSingleton<ClientQueue>::instance()->Add(std::shared_ptr<ClientJobBase>(new ClientImpl));
+            SClientQueue::instance()->Add(std::shared_ptr<ClientJobBase>(new ClientImpl));
 		}
 	};
 }

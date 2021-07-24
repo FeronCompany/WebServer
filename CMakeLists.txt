@@ -9,6 +9,8 @@ if(NOT SET_MY_CLIENT_NAME)
 endif()
 
 project (${SET_MY_SERVER_NAME} VERSION 0.1.0 LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_compile_options(-std=c++11 -g)
 
 LIST(APPEND SRC_DIR commlib frame)

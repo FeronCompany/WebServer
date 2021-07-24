@@ -10,7 +10,7 @@
 #include <condition_variable>
 
 #include "commlib/net/BaseJob.h"
-
+#include "commlib/basic/CommonSingleton.h"
 namespace CWSLib
 {
 	class JobList
@@ -57,8 +57,8 @@ namespace CWSLib
 		std::mutex mMutex;
 		std::condition_variable mWakeCond;
 		std::condition_variable mPushCond;
-
 	};
+    using SThreadPool = CommSingleton<ThreadPool>;
 }
 
 #endif // !__THREAD_POOL_H__
