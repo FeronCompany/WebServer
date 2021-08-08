@@ -7,13 +7,13 @@
 #include "commlib/basic/Time.h"
 #include "commlib/basic/StringUtils.h"
 
-#define DEBUG_LOG(fmt, ...) BASIC_LOG(CWSLib::LogLevel::DEBUG, "[DEBUG] [%s] [%s : %d] " fmt,\
+#define DEBUG_LOG(fmt, ...) BASIC_LOG(CWSLib::LogLevel::DEBUG, "[%s] [DEBUG] [%s:%d] " fmt,\
 	CWSLib::Time::now().tostr().c_str(), CWSLib::String::baseName(__FILE__).c_str(), __LINE__, ##__VA_ARGS__)
-#define NORMAL_LOG(fmt, ...) BASIC_LOG(CWSLib::LogLevel::NORMAL, "[NORMAL] [%s] [%s : %d] " fmt,\
+#define NORMAL_LOG(fmt, ...) BASIC_LOG(CWSLib::LogLevel::NORMAL, "[%s] [NORMAL] [%s:%d] " fmt,\
 	CWSLib::Time::now().tostr().c_str(), CWSLib::String::baseName(__FILE__).c_str(), __LINE__, ##__VA_ARGS__)
-#define WARN_LOG(fmt, ...) BASIC_LOG(CWSLib::LogLevel::WARNING, "[WARNING] [%s] [%s : %d] " fmt,\
+#define WARN_LOG(fmt, ...) BASIC_LOG(CWSLib::LogLevel::WARNING, "[%s] [WARNING] [%s:%d] " fmt,\
 	CWSLib::Time::now().tostr().c_str(), CWSLib::String::baseName(__FILE__).c_str(), __LINE__, ##__VA_ARGS__)
-#define ERROR_LOG(fmt, ...) BASIC_LOG(CWSLib::LogLevel::ERROR, "[ERROR] [%s] [%s : %d] " fmt,\
+#define ERROR_LOG(fmt, ...) BASIC_LOG(CWSLib::LogLevel::ERROR, "[%s] [ERROR] [%s:%d] " fmt,\
 	CWSLib::Time::now().tostr().c_str(), CWSLib::String::baseName(__FILE__).c_str(), __LINE__, ##__VA_ARGS__)
 
 #define PURE_LOG(fmt, ...) BASIC_LOG(CWSLib::LogLevel::ERROR, fmt, ##__VA_ARGS__)

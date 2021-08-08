@@ -37,6 +37,8 @@ INCLUDE_DIRECTORIES("${PROJECT_ROOT_PATH}")
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Protobuf REQUIRED)
 find_package(Threads REQUIRED)
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(mysqlclient REQUIRED mysqlclient>=21.1.20)
 
 SET(PROTO_PATH "${CMAKE_CURRENT_SOURCE_DIR}/src")
 SET(PROJECT_BUILD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/build")
@@ -67,31 +69,30 @@ foreach(child ${proj_dirs})
 		list(APPEND BUSI_SRC ${BUSI_CPPS})
 	endif()
 endforeach()
-add_library(cws_business STATIC ${BUSI_HDR} ${BUSI_SRC})
+file(GLOB business_protos src/*.proto)
+add_library(cws_business STATIC ${BUSI_HDR} ${BUSI_SRC} ${business_protos})
 target_include_directories(cws_business
+	PRIVATE ${PROTOBUF_INCLUDE_DIR}
+	PRIVATE ${mysqlclient_INCLUDE_DIRS}
 	PUBLIC cws_frame
 )
 target_link_libraries(cws_business
 	PUBLIC cws_frame
 	PRIVATE ${PROTOBUF_LIBRARY}
+	PRIVATE ${mysqlclient_LINK_LIBRARIES}
+	PRIVATE Threads::Threads
 )
 
 target_include_directories(${SET_MY_SERVER_NAME}
-	PRIVATE ${PROTOBUF_INCLUDE_DIR}
 	PUBLIC cws_frame
 )
 target_link_libraries(${SET_MY_SERVER_NAME}
-	PRIVATE ${PROTOBUF_LIBRARY}
-	PRIVATE Threads::Threads
 	PUBLIC cws_business
 )
 
 target_include_directories(${SET_MY_CLIENT_NAME}
-	PRIVATE ${PROTOBUF_INCLUDE_DIR}
 	PUBLIC cws_frame
 )
 target_link_libraries(${SET_MY_CLIENT_NAME}
-	PRIVATE ${PROTOBUF_LIBRARY}
-	PRIVATE Threads::Threads
 	PUBLIC cws_business
 )

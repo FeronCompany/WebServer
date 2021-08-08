@@ -3,6 +3,7 @@
 #include "commlib/app/MacroAssemble.h"
 
 #include "UserInfoRegist.h"
+#include "src/dao/UserInfoDBUtil.h"
 
 UserInfoRegist::UserInfoRegist()
 {
@@ -17,11 +18,27 @@ UserInfoRegist::~UserInfoRegist()
 int32_t UserInfoRegist::Execute()
 {
     NORMAL_LOG("User name[%s], password[%s]", m_request->user_name().c_str(), m_request->password().c_str());
-    /// TODO...
+    std::string oid = CWSLib::String::genRandomCode(10);
+    cws::user::UserInfo userInfo;
+    userInfo.set_user_uid(CWSLib::String::genRandomCode(12));
+    userInfo.set_oid(oid);
+    userInfo.set_user_name(m_request->user_name());
+    userInfo.set_phone_number(m_request->phone_number());
+    userInfo.set_gender(m_request->gender());
+    userInfo.set_birthday(m_request->birthday());
+    userInfo.set_password(m_request->password());
+    auto err_code = UserInfoDBUtil::UserInfoRegist(userInfo);
+    if (RetCode::SUCCESS != err_code)
+    {
+        ERROR_LOG("UserInfoRegist failed.");
+        m_response->mutable_ret_info()->set_err_code(RetCode::REGIST_USER_FAILED);
+        m_response->mutable_ret_info()->set_err_msg("Regist failed.");
+        return 0;
+    }
     
     m_response->mutable_ret_info()->set_err_code(0);
     m_response->mutable_ret_info()->set_err_msg("OK");
-    m_response->set_user_id("654321");
+    m_response->set_user_id(oid);
     return 0;
 }
 
