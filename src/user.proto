@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+import "common_define.proto";
+package cws.user;
+
+message UserInfo {
+    string user_uid = 1;
+    string oid = 2;
+    string user_name = 3;
+	string phone_number = 4;
+	cws.common.Gender gender = 5;
+	string birthday = 6;
+	string password = 7;
+}

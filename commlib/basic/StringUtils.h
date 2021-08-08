@@ -18,6 +18,7 @@ namespace String
 
 	std::string baseName(const std::string& fileName);
 
+	std::string genRandomCode(int length);
 }
 }
 

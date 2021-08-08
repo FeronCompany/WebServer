@@ -69,12 +69,12 @@ void ProJobImpl::CallMethod()
 	std::shared_ptr<CwsFrame::Service> service = server.GetService(m_context.service_name());
 	if (!service.get())
 	{
-		throw CWSLib::Exception(Error::UNKNOWN_SERVICE, "Unknown service.");
+		throw CWSLib::Exception(RetCode::UNKNOWN_SERVICE, "Unknown service.");
 	}
 	m_method = service->GetMethod(m_context.method_name());
 	if (!m_method.get())
 	{
-		throw CWSLib::Exception(Error::UNKNOWN_METHOD, "Unknown method.");
+		throw CWSLib::Exception(RetCode::UNKNOWN_METHOD, "Unknown method.");
 	}
 	std::string messageBuf;
 	m_sock->Read(messageBuf, m_context.content_length());

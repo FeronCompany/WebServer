@@ -1,5 +1,6 @@
 
 
+#include "commlib/db/MySQLPool.h"
 #include "frame/CwsServer.h"
 
 #include "src/proj_comm/ProJobImpl.h"
@@ -19,5 +20,13 @@ int ServerInit()
     userService->AddMethod("user_info_regist", []() { return std::shared_ptr<UserInfoRegist>(new UserInfoRegist); });
     server.AddService("UserService", userService);
 
+    // init mysql connection
+    CWSLib::CommSingleton<CWSLib::MySQLConnectionPool>::instance()->init(
+        "127.0.0.1",
+        3306,
+        "cws_admin",
+        "cws_admin_passwd",
+        "",
+        10);
     return 0;
 }

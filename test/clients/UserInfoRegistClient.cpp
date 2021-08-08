@@ -21,7 +21,9 @@ namespace CWSTest
             CwsFrame::Controller controller;
             cws::user::user_info_regist_rqst rqst;
             rqst.set_user_name("wen");
+            rqst.set_phone_number("18344447777");
             rqst.set_password("999666");
+            rqst.set_gender(cws::common::Gender::MALE);
             cws::user::user_info_regist_resp resp;
             cws::user::UserService_Stub stub(&chann);
             stub.user_info_regist(&controller, &rqst, &resp, nullptr);
