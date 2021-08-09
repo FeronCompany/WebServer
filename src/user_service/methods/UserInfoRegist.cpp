@@ -3,7 +3,7 @@
 #include "commlib/app/MacroAssemble.h"
 
 #include "UserInfoRegist.h"
-#include "src/dao/UserInfoDBUtil.h"
+#include "../dao/UserInfoDBUtil.h"
 
 UserInfoRegist::UserInfoRegist()
 {

@@ -21,18 +21,18 @@ RetCode UserInfoDBUtil::UserInfoRegist(const cws::user::UserInfo& userInfo)
         (int)userInfo.gender(),
         birthday.c_str(),
         userInfo.password().c_str());
-#if 0
     std::string queryString = CWSLib::String::format(
         "INSERT INTO %s %s VALUES %s",
         tableName.c_str(),
         rows.c_str(),
         value.c_str());
-#endif
+#if 0
     std::string queryString = CWSLib::String::append(
-                "INSERT INTO %s %s VALUES %s",
-                tableName,
-                rows,
-                value);
+        "INSERT INTO %s %s VALUES %s",
+        tableName,
+        rows,
+        value);
+#endif
     auto instance = CWSLib::CommSingleton<CWSLib::MySQLConnectionPool>::instance()->getConnection();
     NORMAL_LOG("mysql command: %s.", queryString.c_str());
     int res = mysql_real_query(instance, queryString.c_str(), queryString.length());
