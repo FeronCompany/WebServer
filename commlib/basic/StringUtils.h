@@ -19,6 +19,18 @@ namespace String
 	std::string baseName(const std::string& fileName);
 
 	std::string genRandomCode(int length);
+
+    template <typename T>
+    void append(T t, std::string &dst) { dst += std::to_string(t);};
+    void append(const std::string& t, std::string &dst){ dst += t;};
+    void append(const char* t, std::string &dst) { dst += t;};
+    template <typename ...T>
+    std::string append(const T& ...t)
+    {
+        std::string dst;
+        int argv[] = {(append(t, dst), 0)...};
+        return dst;
+    }
 }
 }
 
