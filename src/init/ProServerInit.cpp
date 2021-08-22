@@ -1,10 +1,11 @@
 
 
-#include "commlib/db/MySQLPool.h"
-#include "frame/CwsServer.h"
+#include "MySQLPool.h"
+#include "CwsServer.h"
 
-#include "src/proj_comm/ProJobImpl.h"
-#include "src/user_service/methods/UserInfoRegist.h"
+#include "ProJobImpl.h"
+#include "UserInfoRegist.h"
+#include "ServiceUtils.h"
 
 #include "ProServerInit.h"
 
@@ -20,13 +21,17 @@ int ServerInit()
     userService->AddMethod("user_info_regist", []() { return std::shared_ptr<UserInfoRegist>(new UserInfoRegist); });
     server.AddService("UserService", userService);
 
+    // init config
+    UserServiceConfig userConfig("../config/user_service_config.json");
+    auto raw_config = userConfig.Config();
+
     // init mysql connection
     CWSLib::CommSingleton<CWSLib::MySQLConnectionPool>::instance()->init(
-        "127.0.0.1",
-        3306,
-        "cws_admin",
-        "cws_admin_passwd",
+        raw_config->db_config().ip(),
+        raw_config->db_config().port(),
+        raw_config->db_config().user_name(),
+        raw_config->db_config().password(),
         "",
-        10);
+        raw_config->db_config().pool_size());
     return 0;
 }

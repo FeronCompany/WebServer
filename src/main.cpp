@@ -2,9 +2,9 @@
 
 #include <iostream>
 
-#include "frame/CwsServer.h"
-#include "src/proj_comm/ProJobImpl.h"
-#include "src/init/ProServerInit.h"
+#include "CwsServer.h"
+#include "ProJobImpl.h"
+#include "ProServerInit.h"
 
 int main(int argc, char** argv)
 {

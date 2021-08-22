@@ -13,6 +13,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_compile_options(-std=c++11 -g)
 
+# Add headers and source files
 LIST(APPEND SRC_DIR commlib frame)
 foreach(cur_dir ${SRC_DIR})
 	file(GLOB_RECURSE SRCS ${cur_dir}/*.cpp)
@@ -24,6 +25,23 @@ endforeach()
 add_library(cws_frame STATIC ${SRC_LIST} ${HDR_LIST})
 add_executable(${SET_MY_SERVER_NAME} src/main.cpp)
 install (TARGETS ${SET_MY_SERVER_NAME} DESTINATION bin)
+
+# Add sub directories
+function(recursive_include_sub_dir dir)
+	if (IS_DIRECTORY ${dir})
+#		message("Adding ${dir} to include.")
+		include_directories(${dir})
+	endif()
+	file(GLOB ALL_SUB RELATIVE ${dir} ${dir}/*)
+	foreach(sub ${ALL_SUB})
+		if (IS_DIRECTORY ${dir}/${sub})
+			recursive_include_sub_dir(${dir}/${sub})
+		endif()
+	endforeach()
+endfunction()
+recursive_include_sub_dir(${CMAKE_CURRENT_SOURCE_DIR}/commlib)
+recursive_include_sub_dir(${CMAKE_CURRENT_SOURCE_DIR}/frame)
+recursive_include_sub_dir(${CMAKE_CURRENT_SOURCE_DIR}/src)
 
 file(GLOB_RECURSE TEST_HPPS test/*.hpp)
 file(GLOB_RECURSE TEST_HDRS test/*.h)
@@ -40,9 +58,10 @@ find_package(Threads REQUIRED)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(mysqlclient REQUIRED mysqlclient>=21.1.20)
 
-SET(PROTO_PATH "${CMAKE_CURRENT_SOURCE_DIR}/src")
+SET(PROTO_PATH "${CMAKE_CURRENT_SOURCE_DIR}/src/proto")
 SET(PROJECT_BUILD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/build")
 SET(PROTO_META_BASE_DIR "${PROJECT_BUILD_DIR}/stubs")
+include_directories(${PROTO_META_BASE_DIR})
 file(GLOB protobuf_files
 	${PROTO_PATH}/*.proto
 )
@@ -69,8 +88,7 @@ foreach(child ${proj_dirs})
 		list(APPEND BUSI_SRC ${BUSI_CPPS})
 	endif()
 endforeach()
-file(GLOB business_protos src/*.proto)
-add_library(cws_business STATIC ${BUSI_HDR} ${BUSI_SRC} ${business_protos})
+add_library(cws_business STATIC ${BUSI_HDR} ${BUSI_SRC})
 target_include_directories(cws_business
 	PRIVATE ${PROTOBUF_INCLUDE_DIR}
 	PRIVATE ${mysqlclient_INCLUDE_DIRS}

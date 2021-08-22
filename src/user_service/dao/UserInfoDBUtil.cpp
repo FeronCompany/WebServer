@@ -1,9 +1,6 @@
 
 
-#include "commlib/db/MySQLPool.h"
-#include "commlib/basic/StringUtils.h"
-#include "commlib/basic/CommonSingleton.h"
-#include "commlib/app/MacroAssemble.h"
+#include "CommonLib.h"
 
 #include "UserInfoDBUtil.h"
 

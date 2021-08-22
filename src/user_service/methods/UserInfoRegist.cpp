@@ -1,9 +1,9 @@
 
 
-#include "commlib/app/MacroAssemble.h"
+#include "commlib/app/CommonLib.h"
 
 #include "UserInfoRegist.h"
-#include "../dao/UserInfoDBUtil.h"
+#include "UserInfoDBUtil.h"
 
 UserInfoRegist::UserInfoRegist()
 {

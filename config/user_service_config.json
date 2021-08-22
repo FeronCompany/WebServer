@@ -1,0 +1,9 @@
+{
+    "db_config":{
+        "ip":"127.0.0.1",
+        "port":3306,
+        "user_name":"cws_admin",
+        "password":"cws_admin_passwd",
+        "pool_size":10
+    }
+}

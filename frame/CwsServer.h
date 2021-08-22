@@ -7,8 +7,7 @@
 #include <map>
 #include <memory>
 
-#include "commlib/net/EventDispatcher.h"
-#include "commlib/basic/CommonSingleton.h"
+#include "CommonLib.h"
 #include "CwsService.h"
 
 namespace CwsFrame

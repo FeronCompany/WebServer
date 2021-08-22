@@ -3,10 +3,10 @@
 #ifndef __PRO_JOB_IMPL_H__
 #define __PRO_JOB_IMPL_H__
 
-#include "commlib/net/BaseJob.h"
+#include "BaseJob.h"
 
-#include "build/stubs/common_define.pb.h"
-#include "build/stubs/user_service.pb.h"
+#include "common_define.pb.h"
+#include "user_service.pb.h"
 
 class ProJobImpl : public CWSLib::BaseJob
 {

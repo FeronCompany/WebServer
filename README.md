@@ -11,7 +11,7 @@ test|functions and classes of test
 ## <2> How to start develope?
 Start by the following steps:  
 + `cd build && cmake ..` and get the stubs in build/stubs/
-+ `cd src` and replace src/*.proto by your own
++ `cd src/proto` and replace src/proto/*.proto by your own
 + `mkdir <your service name>` and develope inside
 + When developing some common utils of business, just put them into proj_comm
 ## <3> How to build?

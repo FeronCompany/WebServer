@@ -1,7 +1,7 @@
 
 
-#include "../app/MacroAssemble.h"
-#include "../basic/Exception.h"
+#include "MacroAssemble.h"
+#include "Exception.h"
 #include "MySQLPool.h"
 
 namespace CWSLib

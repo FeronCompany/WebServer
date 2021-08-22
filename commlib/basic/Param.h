@@ -18,21 +18,21 @@ namespace CWSLib
 		void setValue(const std::string& key, double value);
 
 		// getters
-		// Èç¹ûÖµ²»´æÔÚ»òÕßÀàĞÍ´íÎó£¬·µ»Ø¸ÃÀàĞÍµÄÄ¬ÈÏÖµ
+		// å¦‚æœå€¼ä¸å­˜åœ¨æˆ–è€…ç±»å‹é”™è¯¯ï¼Œè¿”å›è¯¥ç±»å‹çš„é»˜è®¤å€¼
 		// If value does not exist or type is wrong, return default value of that type
 		int32_t getInt(const std::string& key);
 		int64_t getLong(const std::string& key);
 		double getDouble(const std::string& key);
 		std::string getString(const std::string& key);
 
-		// Éú³Ékey value´®£¬bigSepÊÇ¼üÖµ¶ÔÖ®¼äµÄ·Ö¸ô·û smallSepÊÇ¼üÖµ¶ÔÄÚ²¿µÄ·Ö¸ô·û
+		// ç”Ÿæˆkey valueä¸²ï¼ŒbigSepæ˜¯é”®å€¼å¯¹ä¹‹é—´çš„åˆ†éš”ç¬¦ smallSepæ˜¯é”®å€¼å¯¹å†…éƒ¨çš„åˆ†éš”ç¬¦
 		std::string toQueryString(const std::string& bigSep, const std::string& smallSep);
 
-		// ½âÎökey value´®£¬bigSepÊÇ¼üÖµ¶ÔÖ®¼äµÄ·Ö¸ô·û smallSepÊÇ¼üÖµ¶ÔÄÚ²¿µÄ·Ö¸ô·û
+		// è§£ækey valueä¸²ï¼ŒbigSepæ˜¯é”®å€¼å¯¹ä¹‹é—´çš„åˆ†éš”ç¬¦ smallSepæ˜¯é”®å€¼å¯¹å†…éƒ¨çš„åˆ†éš”ç¬¦
 		void parseQueryString(const std::string& rawString, const std::string& bigSep,
 			const std::string& smallSep);
 
-		// Çå³ıËùÓĞ¼üÖµ¶Ô²¢ÊÍ·ÅÄÚ´æ
+		// æ¸…é™¤æ‰€æœ‰é”®å€¼å¯¹å¹¶é‡Šæ”¾å†…å­˜
 		void clear();
 
 	private:

@@ -2,11 +2,9 @@
 
 #include <thread>
 
-#include "commlib/app/TypeRegSingleton.h"
-#include "commlib/app/MacroAssemble.h"
-#include "commlib/basic/Exception.h"
+#include "CommonLib.h"
 
-#include "frame/CwsServer.h"
+#include "CwsServer.h"
 
 #include "ProJobImpl.h"
 #include "ProError.h"

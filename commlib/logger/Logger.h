@@ -3,8 +3,8 @@
 #ifndef __LOGGER_H__
 #define __LOGGER_H__
 
-#include "commlib/basic/CommonSingleton.h"
-#include "commlib/basic/StringUtils.h"
+#include "CommonSingleton.h"
+#include "StringUtils.h"
 
 #include <string>
 
@@ -20,8 +20,8 @@ namespace CWSLib
 
     enum class LogDirection
     {
-        TO_FILE = 0,    // ÈÕÖ¾Ğ´ÈëÎÄ¼ş
-        TO_TERM = 1,    // ÈÕÖ¾´òÓ¡µ½ÖÕ¶Ë
+        TO_FILE = 0,    // æ—¥å¿—å†™å…¥æ–‡ä»¶
+        TO_TERM = 1,    // æ—¥å¿—æ‰“å°åˆ°ç»ˆç«¯
     };
 
     class Logger
