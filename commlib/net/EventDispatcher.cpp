@@ -1,8 +1,5 @@
 
 
-#include "EventDispatcher.h"
-#include "commlib/app/MacroAssemble.h"
-
 #include <iostream>
 #include <string>
 #include <cstring>
@@ -15,6 +12,9 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
+
+#include "EventDispatcher.h"
+#include "MacroAssemble.h"
 
 namespace CWSLib
 {

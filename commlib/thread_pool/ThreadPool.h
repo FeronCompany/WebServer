@@ -9,8 +9,8 @@
 #include <mutex>
 #include <condition_variable>
 
-#include "commlib/net/BaseJob.h"
-#include "commlib/basic/CommonSingleton.h"
+#include "BaseJob.h"
+#include "CommonSingleton.h"
 namespace CWSLib
 {
 	class JobList

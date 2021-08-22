@@ -5,7 +5,7 @@
 
 #include <google/protobuf/service.h>
 
-#include "commlib/net/Socket.h"
+#include "Socket.h"
 
 namespace CwsFrame
 {

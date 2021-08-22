@@ -2,8 +2,8 @@
 
 #pragma once
 
-#include "build/stubs/user.pb.h"
-#include "src/proj_comm/ProError.h"
+#include "user.pb.h"
+#include "ProError.h"
 
 class UserInfoDBUtil
 {

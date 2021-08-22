@@ -12,3 +12,14 @@ message UserInfo {
 	string birthday = 6;
 	string password = 7;
 }
+
+message DBConfig {
+	string ip = 1;
+	int32 port = 2;
+	string user_name = 3;
+	string password = 4;
+	int32 pool_size = 5;
+}
+message UserServiceConfig {
+	DBConfig db_config = 1;
+}

@@ -2,9 +2,9 @@
 
 #include <google/protobuf/message.h>
 
-#include "commlib/app/MacroAssemble.h"
+#include "CommonLib.h"
 
-#include "build/stubs/user_service.pb.h"
+#include "user_service.pb.h"
 #include "CwsChannel.h"
 
 namespace CwsFrame

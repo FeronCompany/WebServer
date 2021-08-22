@@ -5,7 +5,7 @@
 
 #include <memory>
 
-#include "commlib/app/TypeRegSingleton.h"
+#include "TypeRegSingleton.h"
 #include "Socket.h"
 
 namespace CWSLib

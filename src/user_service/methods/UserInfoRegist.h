@@ -3,10 +3,10 @@
 #ifndef __USER_INFO_REGIST_H__
 #define __USER_INFO_REGIST_H__
 
-#include "frame/CwsService.h"
-#include "frame/CwsServer.h"
+#include "CwsService.h"
+#include "CwsServer.h"
 
-#include "build/stubs/user_service.pb.h"
+#include "user_service.pb.h"
 
 class UserInfoRegist : public CwsFrame::Method
 {

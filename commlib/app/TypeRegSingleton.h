@@ -6,7 +6,7 @@
 #include <string>
 #include <functional>
 #include <map>
-#include "../basic/CommonSingleton.h"
+#include "CommonSingleton.h"
 
 template<class BaseClass>
 class TypeRegContainer

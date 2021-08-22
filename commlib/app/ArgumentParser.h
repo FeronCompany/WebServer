@@ -10,18 +10,18 @@ namespace CWSLib
 {
 	typedef enum tagEnArgType
 	{
-		EN_ARG_TYPE_NO_ARG = 0,// ±íÃ÷¸Ã²ÎÊıºó²»Ğè´ø²ÎÊı(Èç£º--name)
-		EN_ARG_TYPE_REQUIRE_ARG = 1,// ±íÃ÷¸Ã²ÎÊıºó±ØĞë´ø²ÎÊı(Èç£º--name Bob)
-		EN_ARG_TYPE_OPTIONAL_ARG = 2// ±íÃ÷¸Ã²ÎÊıºó¿É´ı²ÎÊıÒ²¿É²»´ø²ÎÊı (¼´--nameºÍ--name Bob¾ù¿É)
+		EN_ARG_TYPE_NO_ARG = 0, // è¡¨æ˜è¯¥å‚æ•°åä¸éœ€å¸¦å‚æ•°(å¦‚ï¼š--name)
+		EN_ARG_TYPE_REQUIRE_ARG = 1, // è¡¨æ˜è¯¥å‚æ•°åå¿…é¡»å¸¦å‚æ•°(å¦‚ï¼š--name Bob)
+		EN_ARG_TYPE_OPTIONAL_ARG = 2 // è¡¨æ˜è¯¥å‚æ•°åå¯å¾…å‚æ•°ä¹Ÿå¯ä¸å¸¦å‚æ•° (å³--nameå’Œ--name Bobå‡å¯)
 	}EN_ARG_TYPE;
 
 	struct COption
 	{
-		std::string strLongArgName;//³¤²ÎÊıÃû³Æ --name $name$,ÔòstrLongArgNameÎª"name"
-		char cShortArgName;//¶Ì²ÎÊıÃû³Æ -n $name$,ÔòcShortArgNameÎª'n',½öÔÊĞí×Ö·û»òÕßNULL
+		std::string strLongArgName; // é•¿å‚æ•°åç§° --name $name$,åˆ™strLongArgNameä¸º"name"
+		char cShortArgName; // çŸ­å‚æ•°åç§° -n $name$,åˆ™cShortArgNameä¸º'n',ä»…å…è®¸å­—ç¬¦æˆ–è€…NULL
 		EN_ARG_TYPE enArgType;
-		std::string strComments;//×¢ÊÍ
-		std::string strHelpMsg;//°ïÖúĞÅÏ¢
+		std::string strComments; // æ³¨é‡Š
+		std::string strHelpMsg; // å¸®åŠ©ä¿¡æ¯
 	};
 
 	class ArgumentParser

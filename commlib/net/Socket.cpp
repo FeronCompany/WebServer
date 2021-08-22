@@ -5,7 +5,7 @@
 #include <arpa/inet.h>
 #include <cstring>
 #include "Socket.h"
-#include "commlib/app/MacroAssemble.h"
+#include "MacroAssemble.h"
 
 namespace CWSLib
 {
@@ -171,8 +171,8 @@ namespace CWSLib
 			return std::shared_ptr<Socket>();
 		}
 
-		char hostBuf[NI_MAXHOST]; // IPµØÖ·»º´æ
-		char portBuf[NI_MAXSERV]; // PORT»º´æ
+		char hostBuf[NI_MAXHOST]; // IPï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½
+		char portBuf[NI_MAXSERV]; // PORTï¿½ï¿½ï¿½ï¿½
 		int ret = getnameinfo((sockaddr*)&clientAddr, sizeof(clientAddr),
 			hostBuf, sizeof(hostBuf) / sizeof(hostBuf[0]),
 			portBuf, sizeof(portBuf) / sizeof(portBuf[0]),

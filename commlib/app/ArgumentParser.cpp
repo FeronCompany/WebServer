@@ -28,7 +28,7 @@ void CWSLib::ArgumentParser::parse(int argc, char** argv)
 		std::string commandName;
 		if (checkLongName(argv[i], commandName) || checkShortName(argv[i], commandName))
 		{
-			// 确认是key时，确认其是否要跟value，如果明确不跟，直接跳过，否则放入commandStack
+			// 纭鏄痥ey鏃讹紝纭鍏舵槸鍚﹁璺焩alue锛屽鏋滄槑纭笉璺燂紝鐩存帴璺宠繃锛屽惁鍒欐斁鍏ommandStack
 			std::map<std::string, COption>::iterator itor = m_defaultArgs.find(commandName);
 			if (itor != m_defaultArgs.end() && itor->second.enArgType == EN_ARG_TYPE_NO_ARG)
 			{
@@ -47,7 +47,7 @@ void CWSLib::ArgumentParser::parse(int argc, char** argv)
 		}
 		else
 		{
-			// 如果确认是value，匹配commandStack栈顶的command，若为空，则废弃此值；
+			// 濡傛灉纭鏄痸alue锛屽尮閰峜ommandStack鏍堥《鐨刢ommand锛岃嫢涓虹┖锛屽垯搴熷純姝ゅ�硷紱
 			if (!commandStack.empty())
 			{
 				m_argumentMap[commandStack.back()] = argv[i];
