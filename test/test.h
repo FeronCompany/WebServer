@@ -10,6 +10,7 @@ namespace CWSTest
     void log();
     void json();
     void client();
+    void interface();
 }
 
 #endif // !__TEST_H__

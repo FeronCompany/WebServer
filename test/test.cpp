@@ -13,6 +13,7 @@
 #include "commlib/thread_pool/ThreadPool.h"
 #include "commlib/app/MacroAssemble.h"
 #include "commlib/app/TypeRegSingleton.h"
+#include "commlib/basic/interface.h"
 
 void CWSTest::helloWorld()
 {
@@ -134,4 +135,33 @@ void CWSTest::client()
 	close(sockfd);
 }
 
+void CWSTest::interface()
+{
+    auto add = [](int x, int y, int z) -> int
+    {
+        std::cout<<x + y + z<<std::endl;
+        return x + y + z;
+    };
+    auto show = [](const std::string &text) -> void
+    {
+        std::cout<<text<<std::endl;
+    };
+    class A
+    {
+    public:
+        void show(const std::string &text)
+        {
+            std::cout<<"A:"<<text<<std::endl;
+        }
+    };
+    CWSLib::InterfaceSpace::Interfaces interfaces;
+    A a;
+    interfaces.registerMethod("A-Show", std::function<void(A, const std::string&)>(&A::show));
+    interfaces.registerMethod("show", std::function<void(const std::string&)>(show));
+    interfaces.registerMethod("add", std::function<int(int, int, int)>(add));
+    interfaces.invoke<void, const std::string&>("show", "listening talker makes me thirsty.");
+    interfaces.invoke<int, int, int, int>("add", 1, 2, 3);
+    interfaces.invoke<void, const std::string&>("A-Show", "i am batman.");
+    return;
+}
 
