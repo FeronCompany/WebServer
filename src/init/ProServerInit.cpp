@@ -1,10 +1,13 @@
 
 
+#include <sw/redis++/redis++.h>
+
 #include "MySQLPool.h"
 #include "CwsServer.h"
 
 #include "ProJobImpl.h"
 #include "UserInfoRegist.h"
+#include "UserInfoLogin.h"
 #include "ServiceUtils.h"
 
 #include "ProServerInit.h"
@@ -19,19 +22,29 @@ int ServerInit()
     auto& server = *CServerSingleton::instance();
     CwsFrame::Service* userService = new CwsFrame::Service("UserService");
     userService->AddMethod("user_info_regist", []() { return std::shared_ptr<UserInfoRegist>(new UserInfoRegist); });
+    userService->AddMethod("user_info_login", []() { return std::shared_ptr<UserInfoLogin>(new UserInfoLogin); });
     server.AddService("UserService", userService);
 
     // init config
     UserServiceConfig userConfig("../config/user_service_config.json");
-    auto raw_config = userConfig.Config();
+    auto rawConfig = userConfig.Config();
 
     // init mysql connection
     CWSLib::CommSingleton<CWSLib::MySQLConnectionPool>::instance()->init(
-        raw_config->db_config().ip(),
-        raw_config->db_config().port(),
-        raw_config->db_config().user_name(),
-        raw_config->db_config().password(),
+        rawConfig->db_config().ip(),
+        rawConfig->db_config().port(),
+        rawConfig->db_config().user_name(),
+        rawConfig->db_config().password(),
         "",
-        raw_config->db_config().pool_size());
+        rawConfig->db_config().pool_size());
+
+    sw::redis::ConnectionOptions connectionOptions;
+    connectionOptions.host = rawConfig->redis_config().ip();
+    connectionOptions.port = rawConfig->redis_config().port();
+    connectionOptions.connect_timeout = std::chrono::milliseconds(200);
+    connectionOptions.socket_timeout = std::chrono::milliseconds(200);
+    sw::redis::ConnectionPoolOptions poolOptions;
+    poolOptions.size = rawConfig->redis_config().pool_size();
+    CWSLib::SingletonFactory<sw::redis::Redis>::CreateUnique(connectionOptions, poolOptions);
     return 0;
 }
