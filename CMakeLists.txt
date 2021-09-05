@@ -9,9 +9,9 @@ if(NOT SET_MY_CLIENT_NAME)
 endif()
 
 project (${SET_MY_SERVER_NAME} VERSION 0.1.0 LANGUAGES CXX)
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-add_compile_options(-std=c++11 -g)
+add_compile_options(-std=c++17 -g)
 
 # Add headers and source files
 LIST(APPEND SRC_DIR commlib frame)
@@ -57,6 +57,10 @@ find_package(Protobuf REQUIRED)
 find_package(Threads REQUIRED)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(mysqlclient REQUIRED mysqlclient>=21.1.20)
+find_path(HIREDIS_HEADER hiredis)
+find_library(HIREDIS_LIB hiredis)
+find_path(REDIS_PLUS_PLUS_HEADER sw)
+find_library(REDIS_PLUS_PLUS_LIB redis++)
 
 SET(PROTO_PATH "${CMAKE_CURRENT_SOURCE_DIR}/src/proto")
 SET(PROJECT_BUILD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/build")
@@ -92,12 +96,16 @@ add_library(cws_business STATIC ${BUSI_HDR} ${BUSI_SRC})
 target_include_directories(cws_business
 	PRIVATE ${PROTOBUF_INCLUDE_DIR}
 	PRIVATE ${mysqlclient_INCLUDE_DIRS}
+	PRIVATE ${HIREDIS_HEADER}
+	PRIVATE ${REDIS_PLUS_PLUS_HEADER}
 	PUBLIC cws_frame
 )
 target_link_libraries(cws_business
 	PUBLIC cws_frame
 	PRIVATE ${PROTOBUF_LIBRARY}
 	PRIVATE ${mysqlclient_LINK_LIBRARIES}
+	PRIVATE ${HIREDIS_LIB}
+	PRIVATE ${REDIS_PLUS_PLUS_LIB}
 	PRIVATE Threads::Threads
 )
 

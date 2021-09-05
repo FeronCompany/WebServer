@@ -11,6 +11,7 @@ message UserInfo {
 	cws.common.Gender gender = 5;
 	string birthday = 6;
 	string password = 7;
+	string create_time = 8;
 }
 
 message DBConfig {
@@ -20,6 +21,16 @@ message DBConfig {
 	string password = 4;
 	int32 pool_size = 5;
 }
+message RedisConfig {
+	string ip = 1;
+	int32 port = 2;
+	int32 pool_size = 3;
+}
 message UserServiceConfig {
 	DBConfig db_config = 1;
+	RedisConfig redis_config = 2;
+}
+
+message UserSessionInfo {
+	string user_id = 1;
 }

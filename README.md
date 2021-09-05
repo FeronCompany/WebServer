@@ -18,6 +18,8 @@ Start by the following steps:
 + install third-party libs:
   + protobuf
   + mysqlclient
+  + hiredis
+  + redis++
 + start build within the following steps:  
 `mkdir build` if not exists  
 `cd build`  

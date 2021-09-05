@@ -5,5 +5,10 @@
         "user_name":"cws_admin",
         "password":"cws_admin_passwd",
         "pool_size":10
+    },
+    "redis_config":{
+        "ip":"127.0.0.1",
+        "port":6379,
+        "pool_size": 10
     }
 }
